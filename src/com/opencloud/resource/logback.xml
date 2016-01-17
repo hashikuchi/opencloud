@@ -1,0 +1,31 @@
+<configuration>
+  <!-- This is a configuration of logging system.
+  	You can customize the log level, output locations, text patterns, and so on.
+  	This system uses LOGBack. The full reference is available from http://logback.qos.ch/ . -->
+    
+  <!-- a variable for log name -->
+  <timestamp key="date" datePattern="yyyyMMdd" />
+  
+  <!-- Standard output -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} [%file:%line] %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <!-- File output -->
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <!-- Define the path or name of the log file. -->
+   	<file>log/OpenCloud_${date}.log</file>
+    <encoder>
+      <pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} %-5level %logger{10} [%file:%line] %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <!-- Define the log level here. Levels are ERROR, WARN, DEBUG, and INFO.
+  	ERROR or WARN should be set at the production environment. -->
+  <root level="TRACE">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>
